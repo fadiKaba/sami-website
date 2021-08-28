@@ -1,6 +1,7 @@
 <template>
 <div :class="['layout-default', layoutState ? 'light-l' : '']">
     <TextureGold></TextureGold>
+
     <div class="row content">
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -60,7 +61,6 @@ export default {
     height: 100vh;
     overflow: hidden;
     font-family: 'din', Arial, Helvetica, sans-serif;
-    transition: 0.5s;
     .content{
         height: 100%;
     }

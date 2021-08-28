@@ -17,7 +17,6 @@
 <script>
 export default {
 
-
 }
 </script>
 
@@ -26,10 +25,8 @@ export default {
 #home{
    height: 100%;
    .home-header{
-      display: flex;
-      height: 10vh;
-      align-items: flex-end;
       font-family: 'din', Arial, Helvetica, sans-serif;
+      padding-top: 10vh;
    }
    .home-body{
       height: 100%;

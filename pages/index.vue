@@ -1,5 +1,5 @@
 <template>
- <Home></Home>
+  <Home v-if="render"></Home>
 </template>
 
 <script>
@@ -7,14 +7,24 @@
 import {mapMutations} from 'vuex'
 
 export default {
+  data: function(){
+    return{
+      render: false
+    }
+  },
   mounted: function(){
-      this.setLayoutState();
+      this.renderComponent();
   },
   computed: {
 
   },
   methods: {
-    ...mapMutations(['setLayoutState'])
+    renderComponent: function(){
+      let vm = this;
+      setTimeout(function(){
+        vm.render = true;
+      }, 500)
+    }
   }
 }
 </script>
