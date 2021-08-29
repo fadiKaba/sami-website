@@ -1,6 +1,7 @@
 export const state = () => ({
     layoutStateNave: false,
-    layoutState: false
+    layoutState: false,
+    runLoadingPage: true
 })
 
 export const mutations = {
@@ -9,5 +10,8 @@ export const mutations = {
     },
     setLayoutNav: function(state){
        state.layoutStateNave = !state.layoutStateNave;
+    },
+    setRunLoadingPage: function(state){
+        state.runLoadingPage = false;
     }
 }
