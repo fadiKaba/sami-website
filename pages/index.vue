@@ -1,15 +1,13 @@
 <template>
-  <Home v-if="render"></Home>
+  <Home v-if="render1"></Home>
 </template>
 
 <script>
 
-import {mapMutations} from 'vuex'
-
 export default {
   data: function(){
     return{
-      render: false
+      render1: false
     }
   },
   mounted: function(){
@@ -22,7 +20,7 @@ export default {
     renderComponent: function(){
       let vm = this;
       setTimeout(function(){
-        vm.render = true;
+        vm.render1 = true;
       }, 500)
     }
   }
@@ -31,10 +29,5 @@ export default {
 
 <style lang="scss" scoped>
 
-@import '@/assets/scss/colors.scss';
 
-  h1{
-    color: $color-primary;
-    font-family: 'din', Arial, Helvetica, sans-serif;
-  }
 </style>

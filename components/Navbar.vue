@@ -1,21 +1,41 @@
 <template>
 <nav>
     <div class="burger-menu" @click="showNavbar()">
-        <span :class="['burger-top', layoutStateNave ? 'humburger-light' : '']"></span>
-        <span :class="['burger-top', layoutStateNave ? 'humburger-light' : '']"></span>
+        <span
+        :class="
+        ['burger-top',
+        layoutStateNave ? 'humburger-light' : '',
+        isBurgerTransformed ? 'burger-top-transform' : 'burger-top-transform-reverse']"></span>
+        <span
+        :class="
+        ['burger-bottom',
+        layoutStateNave ? 'humburger-light' : '',
+        isBurgerTransformed ? 'burger-bottom-transform' : 'burger-bottom-transform-reverse']"></span>
     </div>
     <div
     :class="['navbar-collapsible',
     isNavbar != null ? isNavbar ? 'show' : 'hide' : '',
     isFullNav ? 'show-full' : '',
-    layoutStateNave ? 'light' : '']">
+    layoutStateNave ? 'light border-light' : '']">
       <div class="inner-navbar-container">
           <div class="close-btn" @click="showNavbar()">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
               xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25.91" height="25.91" x="0" y="0" viewBox="0 0 329.26933 329" style="enable-background:new 0 0 512 512"
               xml:space="preserve">
               <g><path xmlns="http://www.w3.org/2000/svg" d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
-              :fill="layoutStateNave ? '#f8f0e3' : '#f13e16'" data-original="#000000" style="" class=""/></g></svg>
+              :fill="layoutStateNave ? '#f8f0e3' : '#f13e16'" data-original="#000000" style="" class=""/></g></svg> -->
+                <div class="burger-menu-in">
+                    <span
+                    :class="
+                    ['burger-top',
+                    !layoutStateNave ? 'humburger-light' : '',
+                    isBurgerTransformed ? 'burger-top-transform' : 'burger-top-transform-reverse']"></span>
+                    <span
+                    :class="
+                    ['burger-bottom',
+                    !layoutStateNave ? 'humburger-light' : '',
+                    isBurgerTransformed ? 'burger-bottom-transform' : 'burger-bottom-transform-reverse']"></span>
+                </div>
           </div>
           <div class="nav-links">
               <ul>
@@ -58,6 +78,7 @@ export default {
         return {
             isNavbar: false,
             isFullNav: null,
+            isBurgerTransformed: false,
         }
     },
     computed: {
@@ -72,6 +93,7 @@ export default {
             }else{
                 this.isNavbar = !this.isNavbar;
             }
+            this.isBurgerTransformed = !this.isBurgerTransformed;
         },
         showFullNavbar: function(){
             let vm = this;
@@ -86,7 +108,8 @@ export default {
             }, 1400)
             setTimeout(function(){
                 vm.setLayoutState();
-            }, 300)
+            }, 400)
+            this.isBurgerTransformed = !this.isBurgerTransformed;
 
         }
     }
@@ -100,15 +123,16 @@ export default {
 nav{
     height: 100%;
     position: relative;
+    z-index: 3;
     .burger-menu{
         position: absolute;
-        top: 10.8vh;
+        top: 10.5vh;
         right: 4.375vw;
         cursor: pointer;
         .burger-top, .burger-bottom{
             display: block;
-            height: 5px;
-            width: 31px;
+            height: 4px;
+            width: 35px;
             border-radius: 5px;
             margin-bottom: 5px;
             background-color: $color-secondary;
@@ -116,8 +140,22 @@ nav{
                 background-color: $color-primary;
             }
         }
+        .burger-top-transform{
+            animation: menu-animation-top 1s ease forwards;
+        }
+        .burger-bottom-transform{
+            animation: menu-animation-bottom 1s ease forwards;
+        }
+        .burger-top-transform-reverse{
+            animation: menu-animation-top-reverse 1s ease forwards;
+        }
+        .burger-bottom-transform-reverse{
+            animation: menu-animation-bottom-reverse 1s ease forwards;
+        }
     }
     .navbar-collapsible{
+    border-right: solid $color-ancor 5px;
+    box-shadow: 5px 0px 15px $color-ancor ;
     background-color: $color-secondary;
     height: 100vh;
     color: $color-primary;
@@ -137,7 +175,11 @@ nav{
         animation: collapsible-hide 0.5s forwards;
     }
     &.show-full{
-        animation: collapsible-show-full 1.4s forwards;
+        animation: collapsible-show-full 1.4s ease-out forwards;
+    }
+    &.border-light{
+        border-right: solid $color-secondary 5px;
+        box-shadow: 5px 0px 5px $color-secondary ;
     }
     .inner-navbar-container{
         height: 100%;
@@ -153,7 +195,6 @@ nav{
         .nav-links{
             color: $color-svg;
             ul{
-                padding: 0;
                 li{
                     transform: rotate(-90deg);
                     margin: 70px 0;
@@ -161,6 +202,10 @@ nav{
                         font-size: 1rem;
                         color: $color-svg;
                         font-family: 'din-bold';
+                        transition: 0.2s;
+                        &:hover{
+                            color: $color-ancor;
+                        }
                         &.nuxt-link-active{
                             color: $color-primary;
                         }
@@ -168,6 +213,9 @@ nav{
                             color: $color-ancor;
                             &.nuxt-link-active{
                                 color: $color-secondary;
+                            }
+                            &:hover{
+                                color: $color-svg;
                             }
                         }
                     }
@@ -189,6 +237,69 @@ nav{
    }
 }
 
+.burger-menu-in{
+    cursor: pointer;
+    .burger-top, .burger-bottom{
+        display: block;
+        height: 4px;
+        width: 35px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        background-color: $color-secondary;
+        &.humburger-light{
+            background-color: $color-primary;
+        }
+    }
+    .burger-top-transform{
+        animation: menu-animation-top 1s ease forwards;
+    }
+    .burger-bottom-transform{
+        animation: menu-animation-bottom 1s ease forwards;
+    }
+    .burger-top-transform-reverse{
+        animation: menu-animation-top-reverse 1s ease forwards;
+    }
+    .burger-bottom-transform-reverse{
+        animation: menu-animation-bottom-reverse 1s ease forwards;
+    }
+}
+
+@keyframes menu-animation-top {
+   from{
+       transform: rotate(0);
+   }
+   to{
+       transform: rotate(47deg)
+   }
+}
+
+@keyframes menu-animation-bottom {
+   from{
+       transform: translateY(0) rotate(0);
+   }
+   to{
+       transform: translateY(-8.5px) rotate(-47deg);
+   }
+}
+
+@keyframes menu-animation-top-reverse {
+   from{
+       transform: rotate(50deg);
+   }
+   to{
+       transform: rotate(0)
+   }
+}
+
+@keyframes menu-animation-bottom-reverse {
+   from{
+       transform: translateY(-8.5px) rotate(-50deg);
+   }
+   to{
+       transform: translateY(0) rotate(0);
+   }
+}
+
 @keyframes collapsible-show{
     0%{
       right: -100vw;
@@ -203,13 +314,13 @@ nav{
       right: -90vw;
     }
     100%{
-        right: -100vw;
+       right: -100vw;
     }
 }
 
 @keyframes collapsible-show-full{
     0%{
-      right: -100vw;
+      right: -90vw;
     }
     100%{
         right: 100vw;

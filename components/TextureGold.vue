@@ -66,17 +66,52 @@ export default {
   width: 100vw;
   overflow: hidden;
   svg{
-     transform: translate(22.2vw, -36.5vh);
+
   }
 }
 
-  // svg{
-  //   position: absolute;
-  //   width: 106.6vw;
-  //   height: 164.7vh;
-  //   left: 22.2vw;
-  //   top: 36.5vh;
-  // }
+@media screen and (min-width:1024px){
+   .svg-texture{
+    svg{
+      width: 92%;
+      transform: translate(19.2vw, -50.5vh);
+    }
+  }
+}
 
+@media screen and (min-width:1100px){
+   .svg-texture{
+    svg{
+      width: 85%;
+      transform: translate(16.2vw, -50.5vh);
+    }
+  }
+}
+
+@media screen and (min-width:1440px){
+   .svg-texture{
+    svg{
+      width: 100%;
+      transform: translate(14.2vw, -32.5vh);
+    }
+  }
+}
+
+@media screen and (min-width:1680px){
+   .svg-texture{
+    svg{
+      width: 90%;
+      transform: translate(16.2vw, -30.5vh);
+    }
+  }
+}
+
+@media screen and (min-width:1920px){
+  .svg-texture{
+    svg{
+      transform: translate(15.2vw, -16.5vh);
+    }
+  }
+}
 
 </style>
