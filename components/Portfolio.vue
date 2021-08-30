@@ -49,7 +49,7 @@ computed: {
    }
    .portfolio-body{
       height: 100%;
-      padding-bottom: 15vh;
+      padding-bottom: 20vh;
       .showcase{
          height: 100%;
          display: flex;
@@ -93,6 +93,7 @@ computed: {
 
 @media screen and (min-width:1024px){
    #portfolio{
+      height: 100vh;
       .portfolio-body{
          // padding-bottom: 10vh;
          .showcase{

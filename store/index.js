@@ -5,11 +5,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-    setLayoutState: function(state){
-       state.layoutState = !state.layoutState;
+    setLayoutState: function(state, payLoad){
+       state.layoutState = payLoad;
     },
-    setLayoutNav: function(state){
-       state.layoutStateNave = !state.layoutStateNave;
+    setLayoutNav: function(state, payLoad){
+       state.layoutStateNave =  payLoad;
     },
     setRunLoadingPage: function(state){
         state.runLoadingPage = false;

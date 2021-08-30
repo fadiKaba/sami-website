@@ -1,4 +1,5 @@
 <template>
+
    <div id="home">
       <div class="home-header">
          <span>home</span>
@@ -6,7 +7,7 @@
       <div class="home-body">
          <div class="col-md-3 showcase">
             <h1>Sami Kaba</h1>
-            <p>I'm a visual/UI designer <br />
+            <p ref="p1">I'm a visual/UI designer <br />
                who passionately creates <br />
                and endlessly innovates</p>
          </div>
@@ -16,6 +17,8 @@
 
 <script>
 export default {
+   mounted: function(){
+   }
 
 }
 </script>
@@ -23,7 +26,7 @@ export default {
 <style lang="scss">
 
 #home{
-   height: 100%;
+   height: 100vh;
    .home-header{
       font-family: 'din-bold', Arial, Helvetica, sans-serif;
       padding-top: 9.8vh;

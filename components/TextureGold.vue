@@ -63,7 +63,7 @@ export default {
   top:0vh;
   left: 0vw;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   svg{
 
@@ -106,7 +106,7 @@ export default {
   }
 }
 
-@media screen and (min-width:1920px){
+@media screen and (min-width:1800px){
   .svg-texture{
     svg{
       transform: translate(15.2vw, -16.5vh);

@@ -23,7 +23,7 @@ import { mapState } from 'vuex';
 export default {
   computed: {
       ...mapState(['layoutState'])
-  }
+  },
 }
 </script>
 
@@ -58,7 +58,8 @@ export default {
 .layout-default{
     background-color: $color-primary;
     color: $color-secondary;
-    height: 100vh;
+  //  height: 100vh;
+ // width: 100vw;
     overflow: hidden;
     font-family: 'din', Arial, Helvetica, sans-serif;
     .content{

@@ -16,14 +16,9 @@
     :class="['navbar-collapsible',
     isNavbar != null ? isNavbar ? 'show' : 'hide' : '',
     isFullNav ? 'show-full' : '',
-    layoutStateNave ? 'light border-light' : '']">
+    layoutStateNave ? 'light' : '']">
       <div class="inner-navbar-container">
           <div class="close-btn" @click="showNavbar()">
-              <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25.91" height="25.91" x="0" y="0" viewBox="0 0 329.26933 329" style="enable-background:new 0 0 512 512"
-              xml:space="preserve">
-              <g><path xmlns="http://www.w3.org/2000/svg" d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
-              :fill="layoutStateNave ? '#f8f0e3' : '#f13e16'" data-original="#000000" style="" class=""/></g></svg> -->
                 <div class="burger-menu-in">
                     <span
                     :class="
@@ -39,16 +34,16 @@
           </div>
           <div class="nav-links">
               <ul>
-                  <li @click="showFullNavbar()">
+                  <li @click="showFullNavbar(false)">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/">Home</NuxtLink>
                   </li>
-                  <li @click="showFullNavbar()">
+                  <li @click="showFullNavbar(true)">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " to="/portfolio">portfolio</NuxtLink>
                   </li>
-                  <li @click="showFullNavbar()">
+                  <!-- <li @click="showFullNavbar()">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " to="/contact">contact</NuxtLink>
-                  </li>
-                  <li @click="showFullNavbar()">
+                  </li> -->
+                  <li @click="showFullNavbar(false)">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " to="/about">about</NuxtLink>
                   </li>
               </ul>
@@ -81,6 +76,9 @@ export default {
             isBurgerTransformed: false,
         }
     },
+    mounted: function(){
+        this.navStateOnScroll();
+    },
     computed: {
         ...mapState(['layoutStateNave'])
     },
@@ -95,7 +93,7 @@ export default {
             }
             this.isBurgerTransformed = !this.isBurgerTransformed;
         },
-        showFullNavbar: function(){
+        showFullNavbar: function(changeState){
             let vm = this;
             if(this.isFullNav == null){
                 this.isFullNav = true;
@@ -104,13 +102,24 @@ export default {
                 this.isFullNav = !this.isFullNav;
             }
             setTimeout(function(){
-                vm.setLayoutNav();
-            }, 1400)
+            vm.setLayoutNav(changeState);
+            }, 500)
             setTimeout(function(){
-                vm.setLayoutState();
-            }, 400)
+                vm.setLayoutState(changeState);
+            }, 500)
             this.isBurgerTransformed = !this.isBurgerTransformed;
-
+        },
+        navStateOnScroll: function(){
+            let vm = this;
+            let height = document.body.clientHeight
+            window.onscroll = function(){
+            console.log(((height * 2) / 3))
+            if(window.scrollY > ((height * 2.7) / 3)){
+                vm.setLayoutNav(true)
+            }else{
+                vm.setLayoutNav(false)
+            }
+          }
         }
     }
 
@@ -120,12 +129,15 @@ export default {
 <style lang="scss" scoped>
 
 @import '@/assets/scss/colors.scss';
+
+$links-font-size: 1rem;
+
 nav{
     height: 100%;
-    position: relative;
+    position: fixed;
     z-index: 3;
     .burger-menu{
-        position: absolute;
+        position: fixed;
         top: 10.5vh;
         right: 4.375vw;
         cursor: pointer;
@@ -154,16 +166,16 @@ nav{
         }
     }
     .navbar-collapsible{
-    border-right: solid $color-ancor 5px;
     box-shadow: 5px 0px 15px $color-ancor ;
     background-color: $color-secondary;
     height: 100vh;
     color: $color-primary;
     width: 100vw;
-    position: absolute;
+    position: fixed;
     display: flex;
     right: -100;
     top: 0;
+    transition: 1s;
     &.light{
         background-color: $color-primary;
         color: $color-secondary;
@@ -175,11 +187,7 @@ nav{
         animation: collapsible-hide 0.5s forwards;
     }
     &.show-full{
-        animation: collapsible-show-full 1.4s ease-out forwards;
-    }
-    &.border-light{
-        border-right: solid $color-secondary 5px;
-        box-shadow: 5px 0px 5px $color-secondary ;
+        animation: collapsible-show-full 0.5s ease-out forwards;
     }
     .inner-navbar-container{
         height: 100%;
@@ -198,16 +206,21 @@ nav{
                 li{
                     transform: rotate(-90deg);
                     margin: 70px 0;
+                    &:hover{
+                        animation: shake 0.3s forwards;
+                    }
                     a{
-                        font-size: 1rem;
+                        font-size: $links-font-size;
                         color: $color-svg;
-                        font-family: 'din-bold';
+                        font-family: 'din';
                         transition: 0.2s;
                         &:hover{
-                            color: $color-ancor;
+                            color: $color-primary;
+                            font-family: 'din-bold';
                         }
                         &.nuxt-link-active{
                             color: $color-primary;
+                            font-family: 'din-bold';
                         }
                         &.link-light{
                             color: $color-ancor;
@@ -215,7 +228,7 @@ nav{
                                 color: $color-secondary;
                             }
                             &:hover{
-                                color: $color-svg;
+                                color: $color-light;
                             }
                         }
                     }
@@ -261,6 +274,17 @@ nav{
     }
     .burger-bottom-transform-reverse{
         animation: menu-animation-bottom-reverse 1s ease forwards;
+    }
+}
+
+@keyframes hover-animation{
+    0%{
+        transform: rotate(-5deg);
+        color: red;
+    }
+    100%{
+        transform: rotate(5deg);
+        color: green;
     }
 }
 
@@ -321,9 +345,15 @@ nav{
 @keyframes collapsible-show-full{
     0%{
       right: -90vw;
+
+    }
+    98%{
+      opacity: 1;
+      right: 0vw;
     }
     100%{
-        right: 100vw;
+      right: -100vw;
+      opacity: 0;
     }
 }
 
