@@ -38,6 +38,7 @@ export default {
      margin: 0 auto;
      margin-top:4vh;
     form{
+         z-index: 2;
         input, textarea{
             background-color: rgba($color-svg, 0.3);
         }
