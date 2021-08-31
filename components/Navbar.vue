@@ -77,7 +77,7 @@ export default {
         }
     },
     mounted: function(){
-        this.navStateOnScroll();
+      //  this.navStateOnScroll();
     },
     computed: {
         ...mapState(['layoutStateNave'])

@@ -87,7 +87,7 @@ export default {
    }
 }
 
-@media screen and (min-width:1440px){
+@media screen and (min-width:1400px){
    #home{
       .home-body{
          // padding-bottom: 10vh;
@@ -103,7 +103,7 @@ export default {
    }
 }
 
-@media screen and (min-width:1680px){
+@media screen and (min-width:1600px){
    #home{
       .home-body{
           padding-bottom: 27vh;
@@ -120,7 +120,7 @@ export default {
    }
 }
 
-@media screen and (min-width:1920px){
+@media screen and (min-width:1800px){
    #home{
       .home-body{
          // padding-bottom: 10vh;

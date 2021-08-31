@@ -28,11 +28,14 @@ export default {
   mounted: function(){
       this.renderComponent();
   },
+  updated: function(){
+    this.scrollDetector();
+  },
   computed: {
      ...mapState(['runLoadingPage'])
   },
   methods: {
-    ...mapMutations(['setRunLoadingPage']),
+    ...mapMutations(['setRunLoadingPage', 'setLayoutNav']),
     renderComponent: function(){
       let vm = this;
       setTimeout(function(){
@@ -40,6 +43,24 @@ export default {
         vm.setRunLoadingPage();
       }, 500);
     },
+    scrollDetector: function(){
+      let timer = null;
+      let vm = this
+      document.body.onscroll = function (){
+        if(timer != null){
+          clearTimeout(timer)
+        }
+        timer = setTimeout(function (){
+          if(window.scrollY > (document.body.scrollHeight /2)){
+            window.scrollTo(0, document.body.scrollHeight);
+            vm.setLayoutNav(true);
+          }else{
+            window.scrollTo(0, 0);
+            vm.setLayoutNav(false);
+          }
+        }, 300)
+      }
+    }
   }
 }
 </script>
