@@ -166,14 +166,13 @@ computed: {
 
 @media screen and (min-width:1920px){
    #portfolio{
-      .home-body{
-          padding-bottom: 14vh;
+      .portfolio-body{
          .showcase{
             ul{
                 li{
                     a{
                       font-size: 100px;
-                      line-height: 19vh;
+                      line-height: 9rem;
                     }
                 }
             }

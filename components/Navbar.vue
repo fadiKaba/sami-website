@@ -106,7 +106,7 @@ export default {
             }, 500)
             setTimeout(function(){
                 vm.setLayoutState(changeState);
-            }, 500)
+            }, 400)
             this.isBurgerTransformed = !this.isBurgerTransformed;
         },
         navStateOnScroll: function(){
@@ -356,6 +356,7 @@ nav{
       opacity: 0;
     }
 }
+
 
 
 </style>
