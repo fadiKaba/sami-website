@@ -24,6 +24,25 @@
 <script>
 export default {
    mounted: function(){
+     this.animateChoices('.contact-header', 0.5, -200);
+     this.animateChoices('.cont span', 0.7, '-58vh');
+     this.animateChoices('.cont p', 1, -200);
+   },
+   methods: {
+      animateChoices: function(el, scrub, x){
+        gsap.from(el, {
+         scrollTrigger: {
+            trigger: el,
+            start: 'center 90%',
+            end: 'center bottom',
+          //  markers: true,
+            toggleActions: "restart none none none",
+            scrub: scrub
+         },
+         x: x,
+         duration: 0.5
+         });
+      }
    }
 
 }
@@ -35,6 +54,7 @@ export default {
 
 #contact{
    height: 100vh;
+   overflow: hidden;
    .contact-body{
       height: 100%;
       padding-bottom: 30vh;

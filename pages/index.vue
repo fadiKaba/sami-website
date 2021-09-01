@@ -1,9 +1,9 @@
 <template>
   <div id="home-page">
     <section class="section-home" ref="s1">
-      <transition name="home">
+      <!-- <transition name="home"> -->
         <Home v-if="render1"></Home>
-      </transition>
+      <!-- </transition> -->
         <div v-if="runLoadingPage" class="spinner-container">
           <div class="lds-hourglass"></div>
         </div>
@@ -19,7 +19,7 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
-  transition: 'home',
+ // transition: 'home',
   data: function(){
     return{
       render1: false
@@ -58,7 +58,7 @@ export default {
             window.scrollTo(0, 0);
             vm.setLayoutNav(false);
           }
-        }, 300)
+        }, 200)
       }
     }
   }

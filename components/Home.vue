@@ -2,12 +2,12 @@
 
    <div id="home">
       <div class="home-header">
-         <span>home</span>
+         <span class="h-el">home</span>
       </div>
       <div class="home-body">
          <div class="col-md-3 showcase">
-            <h1>Sami Kaba</h1>
-            <p ref="p1">I'm a visual/UI designer <br />
+            <h1 class="h-el">Sami Kaba</h1>
+            <p ref="p1" class="h-el">I'm a visual/UI designer <br />
                who passionately creates <br />
                and endlessly innovates</p>
          </div>
@@ -18,6 +18,28 @@
 <script>
 export default {
    mounted: function(){
+   gsap.from('.h-el', {stagger: 0.1, x: '-30vw', duration: 0.3});
+   //  this.animateChoices('.h-el1', 0.5, '-40vw');
+   //  this.animateChoices('.h-el2', 0.6, '-40vw');
+   //  this.animateChoices('.h-el3', 0.7, '-40vw')
+   },
+   methods: {
+      animateChoices: function(el, scrub, x){
+        // const tl = gsap.timeline();
+        // tl.from(el, {xPercent: 200})
+        gsap.to(el, {
+         scrollTrigger: {
+            trigger: el,
+            start: 'center top',
+            end: 'center bottom',
+           markers: true,
+            toggleActions: "restart none none none",
+            scrub: scrub,
+         },
+         x: x,
+         duration: 0.5
+         });
+      }
    }
 
 }

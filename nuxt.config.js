@@ -16,6 +16,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }
+    ],
+    script: [
+      { hid: 'stripe', src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js', defer: true },
+      { hid: 'stripe', src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js', defer: true }
     ]
   },
 

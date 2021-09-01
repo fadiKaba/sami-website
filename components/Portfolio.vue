@@ -29,10 +29,16 @@
 import { mapState } from 'vuex';
 
 export default {
+   mounted: function(){
+     
+   },
+   computed: {
+      ...mapState(['layoutState'])
+   },
+   methods: {
 
-computed: {
-    ...mapState(['layoutState'])
-}
+   }
+
 
 }
 </script>
