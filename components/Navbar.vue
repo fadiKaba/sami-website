@@ -1,6 +1,6 @@
 <template>
 <nav>
-    <div :class="['nav-slider', isFullNav ? 'show-full': '', layoutStateNave ? 'light' : '']"></div>
+    <div :class="['nav-slider', layoutStateNave ? 'light' : '', isFullNav ? 'show-full': '']"></div>
     <div class="burger-menu" @click="showNavbar()">
         <span
         :class="
@@ -38,14 +38,14 @@
                   <li @click="showFullNavbar(false)">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/">Home</NuxtLink>
                   </li>
-                  <li @click="showFullNavbar(true)" id="prr">
-                      <NuxtLink :class="layoutStateNave ? 'link-light' : '' " to="/portfolio">portfolio</NuxtLink>
+                  <li @click="showFullNavbar(true)">
+                      <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/portfolio">portfolio</NuxtLink>
                   </li>
                   <!-- <li @click="showFullNavbar()">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " to="/contact">contact</NuxtLink>
                   </li> -->
                   <li @click="showFullNavbar(false)">
-                      <NuxtLink :class="layoutStateNave ? 'link-light' : '' " to="/about">about</NuxtLink>
+                      <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/about">about</NuxtLink>
                   </li>
               </ul>
           </div>
@@ -87,7 +87,7 @@ export default {
         }
     },
     mounted: function(){
-      //  this.navStateOnScroll();
+      // this.navStateOnScroll();
     },
     computed: {
         ...mapState(['layoutStateNave'])

@@ -1,6 +1,7 @@
 <template>
 
    <div id="contact">
+     <a href="#home"><img ref="arowd" id="arow-down-red" src="@/assets/icos/down-red.png" alt="down"></a>
       <div class="row contact-body">
          <div class="col-md-1">
          </div>
@@ -27,6 +28,8 @@ export default {
      this.animateChoices('.contact-header', 0.5, -200);
      this.animateChoices('.cont span', 0.7, '-58vh');
      this.animateChoices('.cont p', 1, -200);
+     this.animateChoices('#arow-down-red', 1, -200);
+     this.arowAnimation();
    },
    methods: {
       animateChoices: function(el, scrub, x){
@@ -42,8 +45,13 @@ export default {
          x: x,
          duration: 0.5
          });
+      },
+      arowAnimation: function(){
+        const arowDown = this.$refs.arowd;
+        let tl = new TimelineMax({repeat: -1})
+        .from(arowDown, 1, {y: '3vh'})
       }
-   }
+   },
 
 }
 </script>
@@ -55,6 +63,15 @@ export default {
 #contact{
    height: 100vh;
    overflow: hidden;
+   #arow-down-red{
+      position: absolute;
+      top: 1vh;
+      left: 49%;
+      width: 35px;
+      transform: rotate(180deg);
+      cursor: pointer;
+      z-index: 3;
+   }
    .contact-body{
       height: 100%;
       padding-bottom: 30vh;

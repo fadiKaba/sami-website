@@ -27,12 +27,13 @@ export default {
   },
   mounted: function(){
       this.renderComponent();
+      this.scrollDetector();
   },
   updated: function(){
-    this.scrollDetector();
+
   },
   computed: {
-     ...mapState(['runLoadingPage'])
+     ...mapState(['runLoadingPage', 'layoutStateNave'])
   },
   methods: {
     ...mapMutations(['setRunLoadingPage', 'setLayoutNav']),
@@ -53,12 +54,15 @@ export default {
         timer = setTimeout(function (){
           if(window.scrollY > (document.body.scrollHeight /2)){
             window.scrollTo(0, document.body.scrollHeight);
-            vm.setLayoutNav(true);
           }else{
             window.scrollTo(0, 0);
-            vm.setLayoutNav(false);
           }
-        }, 200)
+        }, 200);
+        if(Math.floor(window.scrollY)  == Math.floor(document.body.scrollHeight)){
+          vm.setLayoutNav(true);
+        }else{
+          vm.setLayoutNav(false);
+        }
       }
     }
   }

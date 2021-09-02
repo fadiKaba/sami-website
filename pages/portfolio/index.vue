@@ -1,15 +1,12 @@
 <template>
   <div class="section-portfolio">
-    <transition name="portfolio">
     <Portfolio v-if="render"></Portfolio>
-    </transition>
-  </div>    
+  </div>
 </template>
 
 <script>
 
   export default {
-    transition: 'portfolio',
     data: function(){
       return{
         render: false
@@ -38,11 +35,11 @@
   height: 100vh;
 }
 
-.portfolio-enter-active, .portfolio-leave-active { 
-  transition: opacity .5s; 
+.portfolio-enter-active, .portfolio-leave-active {
+  transition: opacity .5s;
 }
-.portfolio-enter, .portfolio-leave-active { 
-  opacity: 0; 
+.portfolio-enter, .portfolio-leave-active {
+  opacity: 0;
   }
 
 </style>

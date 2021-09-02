@@ -12,6 +12,7 @@
                and endlessly innovates</p>
          </div>
       </div>
+      <a href="#contact"><img ref="arowd" id="arow-down" src="@/assets/icos/down.png" alt="down"></a>
    </div>
 </template>
 
@@ -19,26 +20,17 @@
 export default {
    mounted: function(){
    gsap.from('.h-el', {stagger: 0.1, x: '-30vw', duration: 0.3});
+   this.arowAnimation();
+ //  gsap.from('#arow-down', {y: '-5vh', duration: 0.5} )
    //  this.animateChoices('.h-el1', 0.5, '-40vw');
    //  this.animateChoices('.h-el2', 0.6, '-40vw');
    //  this.animateChoices('.h-el3', 0.7, '-40vw')
    },
    methods: {
-      animateChoices: function(el, scrub, x){
-        // const tl = gsap.timeline();
-        // tl.from(el, {xPercent: 200})
-        gsap.to(el, {
-         scrollTrigger: {
-            trigger: el,
-            start: 'center top',
-            end: 'center bottom',
-           markers: true,
-            toggleActions: "restart none none none",
-            scrub: scrub,
-         },
-         x: x,
-         duration: 0.5
-         });
+      arowAnimation: function(){
+         const arowDown = this.$refs.arowd;
+         let tl = new TimelineMax({repeat: -1})
+         .from(arowDown, 1, {y: '-3vh'})
       }
    }
 
@@ -74,6 +66,13 @@ export default {
          }
 
       }
+   }
+   #arow-down{
+      position: absolute;
+      bottom: 1vh;
+      left: 49%;
+      width: 35px;
+      cursor: pointer;
    }
 }
 
