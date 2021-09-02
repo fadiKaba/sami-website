@@ -6,16 +6,16 @@
       <div class="portfolio-body">
          <div class="col-md-3 showcase">
             <ul>
-                <li>
-                    <NuxtLink :class="layoutState ? 'link-light' : ''" to="#"><span></span>Ui-Design</NuxtLink>
+                <li class="link-or">
+                    <NuxtLink id="link-ui-design" :class="layoutState ? 'link-light' : ''" to="#"><span></span>Ui-Design</NuxtLink>
                 </li>
-                <li>
+                <li class="link-or">
                     <NuxtLink :class="layoutState ? 'link-light' : ''" to="#"><span></span>Print</NuxtLink>
                 </li>
-                <li>
+                <li class="link-or">
                     <NuxtLink :class="layoutState ? 'link-light' : ''" to="#"><span></span>Video Animation</NuxtLink>
                 </li>
-                <li>
+                <li class="link-or">
                     <NuxtLink :class="layoutState ? 'link-light' : ''" to="#"><span></span>Illustration</NuxtLink>
                 </li>
             </ul>
@@ -30,7 +30,7 @@ import { mapState } from 'vuex';
 
 export default {
    mounted: function(){
-     
+   gsap.from('.link-or', {stagger: 0.1, x: '-80vw', scale: 0.1, duration: 0.6, ease: "slow(0.5, 0.8, true)"});
    },
    computed: {
       ...mapState(['layoutState'])

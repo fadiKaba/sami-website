@@ -46,15 +46,6 @@ computed: {
       background-blend-mode: multiply;
       background-size: cover;
       background-position: center;
-    //   &::after{
-    //       content: '';
-    //       background-color: rgba($color-primary, 0.4);
-    //       width: 100%;
-    //       height: 100%;
-    //       position: absolute;
-    //       top:0;
-    //       left:0;
-    //   }
         img{
             width: 100%;
         }

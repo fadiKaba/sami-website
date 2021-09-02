@@ -36,7 +36,7 @@
           <div class="nav-links">
               <ul>
                   <li @click="showFullNavbar(false)">
-                      <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/">Home</NuxtLink>
+                      <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/">Home{{isFullNav}}</NuxtLink>
                   </li>
                   <li @click="showFullNavbar(true)">
                       <NuxtLink :class="layoutStateNave ? 'link-light' : '' " exact to="/portfolio">portfolio</NuxtLink>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="linkedin-out">
-        <svg id="Layer" enable-background="new 0 0 64 64" height="39.9" viewBox="0 0 64 64" width="39.9"
+        <svg id="Layer" :class="isNavbar? 'opacity-zero' : ''" enable-background="new 0 0 64 64" height="39.9" viewBox="0 0 64 64" width="39.9"
         xmlns="http://www.w3.org/2000/svg">
         <path :class="layoutStateNave ? 'svg-light': 'svg-linked'" d="m42 8h-20c-7.72 0-14 6.28-14 14v20c0 7.72 6.28 14 14 14h20c7.72 0 14-6.28 14-14v-20c0-7.72-6.28-14-14-14zm10 34c0 5.514-4.486 10-10 10h-20c-5.514 0-10-4.486-10-10v-20c0-5.514 4.486-10 10-10h20c5.514 0 10 4.486 10 10z"/>
         <path :class="layoutStateNave ? 'svg-light': 'svg-linked'" d="m24 27c-1.104 0-2 .896-2 2v15c0 1.104.896 2 2 2s2-.896 2-2v-15c0-1.104-.896-2-2-2z"/>
@@ -102,14 +102,20 @@ export default {
             let vm = this;
             this.isFullNav = true;
             setTimeout(function(){
-                vm.isFullNav = false;
                 vm.isNavbar = !vm.isNavbar;
-            vm.setLayoutNav(changeState);
-            }, 500)
+                }, 700)
+            setTimeout(function(){
+                vm.isFullNav = false;
+                // vm.isNavbar = !vm.isNavbar;
+         //  vm.setLayoutNav(changeState);
+           // document.querySelector('.nav-slider').classList.add('d-none');
+                }, 1000);
+            setTimeout(function(){
+                    vm.setLayoutNav(changeState);
+                }, 1300)
             setTimeout(function(){
                 vm.setLayoutState(changeState);
-                document.querySelector('.nav-slider').classList.add('d-none');
-            }, 400)
+                },500)
             this.isBurgerTransformed = !this.isBurgerTransformed;
         },
         navStateOnScroll: function(){
@@ -145,11 +151,12 @@ nav{
         top: 0;
         right: -100vw;
         background-color: $color-secondary;
+        transition: 1s;
         &.light{
             background-color: $color-primary;
         }
         &.show-full{
-        animation: collapsible-show-full 0.5s ease-out forwards;
+        animation: collapsible-show-full 1s forwards ;
         }
     }
     .burger-menu{
@@ -228,6 +235,8 @@ nav{
                         color: $color-svg;
                         font-family: 'din';
                         transition: 0.2s;
+                        width: 100%;
+                        display: inline-block;
                         &:hover{
                             color: $color-primary;
                             font-family: 'din-bold';
@@ -267,14 +276,20 @@ nav{
       right: 4.375vw;
       cursor: pointer;
       svg{
-            .svg-linked{
-                fill: $color-secondary;
-            }
-            .svg-light{
-                fill: $color-primary;
-            }
+
+        .svg-linked{
+            fill: $color-secondary;
+        }
+        .svg-light{
+            fill: $color-primary;
+        }
         }
    }
+}
+
+.opacity-zero{
+    transition: 0.5s;
+    opacity: 0;
 }
 
 .burger-menu-in{
@@ -386,15 +401,17 @@ nav{
 
 @keyframes collapsible-show-full{
     0%{
-      right: -100vw;
+      right: -90vw;
+
     }
-    98%{
-      opacity: 1;
+    50%{
+      //  opacity: 1;
       right: 0vw;
     }
     100%{
-      right: -100vw;
-      opacity: 0;
+     right: -100vw;
+      //right: -100vw;
+     // opacity: 0;
     }
 }
 

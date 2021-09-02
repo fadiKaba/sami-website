@@ -58,10 +58,10 @@ export default {
             window.scrollTo(0, 0);
           }
         }, 200);
-        if(Math.floor(window.scrollY)  == Math.floor(document.body.scrollHeight)){
-          vm.setLayoutNav(true);
-        }else{
+        if(Math.floor(window.scrollY)  == 0){
           vm.setLayoutNav(false);
+        }else{
+          vm.setLayoutNav(true);
         }
       }
     }

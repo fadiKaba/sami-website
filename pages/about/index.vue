@@ -1,8 +1,9 @@
 <template>
    <div class="section-about">
-      <transition name="about">
-        <About v-if="render"></About>
-      </transition>
+        <div v-if="!rendered" class="spinner-container">
+          <div class="lds-hourglass"></div>
+        </div>
+        <About v-if="rendered && render"></About>
   </div>
 </template>
 
@@ -11,14 +12,17 @@
 import {mapMutations} from 'vuex';
 
 export default {
-     transition: 'about',
     data: function(){
       return{
-        render: false
+        render: false,
+        rendered: false,
       }
     },
     mounted: function(){
         this.renderComponent();
+        this.$nextTick(function () {
+          this.rendered = true;
+        })
     },
     computed: {
 

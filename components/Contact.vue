@@ -43,7 +43,6 @@ export default {
             scrub: scrub
          },
          x: x,
-         duration: 0.5
          });
       },
       arowAnimation: function(){

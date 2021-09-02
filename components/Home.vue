@@ -18,13 +18,10 @@
 
 <script>
 export default {
+   transition:'home',
    mounted: function(){
    gsap.from('.h-el', {stagger: 0.1, x: '-30vw', duration: 0.3});
    this.arowAnimation();
- //  gsap.from('#arow-down', {y: '-5vh', duration: 0.5} )
-   //  this.animateChoices('.h-el1', 0.5, '-40vw');
-   //  this.animateChoices('.h-el2', 0.6, '-40vw');
-   //  this.animateChoices('.h-el3', 0.7, '-40vw')
    },
    methods: {
       arowAnimation: function(){
@@ -75,6 +72,9 @@ export default {
       cursor: pointer;
    }
 }
+
+.home-enter-active, .home-leave-active { transition: opacity .5s; }
+.home-enter, .home-leave-active { opacity: 0; }
 
 @media screen and (min-width:1024px){
    #home{
