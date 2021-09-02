@@ -222,6 +222,7 @@ nav{
                 li{
                     transform: rotate(-90deg);
                     margin: 70px 0;
+                    text-align: center;
                     a{
                         font-size: $links-font-size;
                         color: $color-svg;
