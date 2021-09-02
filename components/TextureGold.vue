@@ -52,8 +52,52 @@ export default {
     'islight',
     'mini'
   ],
+  mounted: function(){
+   // gsap.to("#Ellipse_10", {duration: 6.5, rotation: '0deg', ease: "circ.out", repeat: -1});
+    //TweenLite.to("#Ellipse_10", {duration: 6.5, rotation: '0deg',ease: "circ.out", repeat: 1});
+    //TweenLite.to("#Ellipse_10", {duration: 6.5, rotation: '360deg', ease: "circ.out", repeat: 1});
+    // TweenLite.to("#Ellipse_10", {duration: 6.5,x: 200, y: -200, rotation: '360deg', ease:Linear.easeNone, repeat: Infinity});
+    this.moveEclipse('#Ellipse_10', -270, -322, 360, 10);
+    this.moveEclipse('#Ellipse_4', 1000, -72, 360, 10);
+   // this.moveEclipse('#Ellipse_16', -600, -800, 360, 10);
+    this.moveOval();
+  },
   computed: {
     ...mapState(['layoutState'])
+  },
+  methods: {
+    moveEclipse: function(element, x, y, rotation, duration){
+      gsap.to(element, {
+      transformOrigin: `${x}px ${y}px`,
+      rotation: rotation,
+      duration: duration,
+      ease: "none",
+      repeat: -1
+      });
+    },
+    moveOval: function(){
+      let radius = 150;
+      TweenLite.set("#Ellipse_16", {
+      xPercent: -50,
+      yPercent: -50,
+      x: -radius,
+      y: -radius
+      });
+
+      // TweenMax.to("#Ellipse_16", 1.2, {
+      //   y: radius,
+      //   ease: Sine.easeInOut,
+      //   repeat: -1,
+      //   yoyo: true
+      // });
+
+      // TweenMax.to("#Ellipse_16", 1, {
+      //   x: radius,
+      //   ease: Sine.easeInOut,
+      //   repeat: -1,
+      //   yoyo: true
+      // }).progress(0.5);
+    }
   }
 
 }
